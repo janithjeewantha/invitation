@@ -30,3 +30,19 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.curtain{display:none!important}}
 
 .rsvp-contacts{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:18px}.rsvp-contacts h3:not(:first-child){margin-top:12px}
+
+/* Ivory promise: an informal ribbon of photographs on mobile. */
+.theme-1 .album-slot{display:contents}
+.theme-1 .album-hint{display:none}
+@media(max-width:700px){
+ .theme-1 .gallery.floating-album{position:relative;display:flex;gap:0;align-items:center;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;padding:42px 0 48px;isolation:isolate}
+ .theme-1 .floating-album::before,.theme-1 .floating-album::after{content:"";flex:0 0 19%}
+ .theme-1 .floating-album::-webkit-scrollbar{display:none}
+ .theme-1 .floating-album .album-slot{display:block;position:relative;flex:0 0 62%;min-width:0;scroll-snap-align:center}
+ .theme-1 .floating-album .gallery-item{display:block;width:100%;max-width:100%;padding:9px 9px 14px!important;background:#fffcf5;border:1px solid #b19b7030;box-shadow:0 12px 22px #503c2520;transform:translateY(var(--lift)) rotate(var(--tilt)) scale(var(--scale,1))!important;opacity:var(--fade,1);transform-origin:center;touch-action:pan-x pan-y pinch-zoom;will-change:transform}
+ .theme-1 .floating-album .gallery-item img{width:100%;height:clamp(190px,32svh,300px)!important;object-fit:cover;object-position:center 35%;pointer-events:none}
+ .theme-1 .floating-album .gallery-item>span{font-size:9px;letter-spacing:.08em;padding-top:12px;pointer-events:none}
+ .theme-1 .floating-album .gallery-item>span b{display:none}
+ .theme-1 .floating-album .gallery-item:focus-visible{outline-offset:3px}
+ .theme-1 .album-hint{display:block;text-align:center;font-size:13px;letter-spacing:.03em;margin:0 auto;color:var(--ink)}
+}

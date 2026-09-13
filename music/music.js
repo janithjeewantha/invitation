@@ -4,7 +4,7 @@
   const audio = new Audio(source.href);
   audio.loop = true;
   audio.preload = 'none';
-  audio.volume = 0.18;
+  audio.volume = 0.8;
   const key = 'wedding-review-music-muted';
   let muted = false;
   try { muted = localStorage.getItem(key) === 'true'; } catch {}
