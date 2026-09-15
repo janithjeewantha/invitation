@@ -15,7 +15,7 @@ for origin, target in [('invitation-concepts', 'designs'), ('animation-studies',
         out.parent.mkdir(parents=True, exist_ok=True)
         depth = len(out.relative_to(ROOT).parts) - 1
         prefix = '../' * depth
-        nav = f'<nav class="review-nav" aria-label="Review collections"><a href="{prefix}index.html">Review home</a><a href="{prefix}designs/index.html"'+(' aria-current="page"' if target=='designs' else '')+f'>10 designs</a><a href="{prefix}animations/index.html"'+(' aria-current="page"' if target=='animations' else '')+'>25 animations</a></nav>'
+        nav = f'<nav class="review-nav" aria-label="Review collections"><a href="{prefix}index.html">Review home</a><a href="{prefix}designs/index.html"'+(' aria-current="page"' if target=='designs' else '')+f'>11 designs</a><a href="{prefix}animations/index.html"'+(' aria-current="page"' if target=='animations' else '')+'>25 animations</a></nav>'
         html = page.read_text(encoding='utf-8')
         html = html.replace('</head>', f'<meta name="robots" content="noindex, nofollow"><link rel="stylesheet" href="{prefix}review-nav.css"></head>')
         html = re.sub(r'(<body\b[^>]*>)', lambda m: m[0]+nav, html, count=1)
@@ -25,4 +25,4 @@ for origin, target in [('invitation-concepts', 'designs'), ('animation-studies',
         out.write_text(html, encoding='utf-8')
 
 (ROOT / '.nojekyll').touch()
-print('Bundled 10 designs and 25 animations.')
+print('Bundled 11 designs and 25 animations.')

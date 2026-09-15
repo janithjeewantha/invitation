@@ -26,7 +26,7 @@ dialog.addEventListener('click', event => {if(event.target === dialog) dialog.cl
 dialog.addEventListener('close', () => opener?.focus());
 
 // Native scrolling drives the scale of each photo; no carousel dependency.
-const album = document.querySelector('.theme-1 .gallery');
+const album = document.querySelector('.theme-1:not(.theme-reverie) .gallery');
 if (album) {
   const photos = [...album.querySelectorAll('.gallery-item')];
   const mobile = matchMedia('(max-width: 700px)');

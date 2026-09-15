@@ -4,7 +4,7 @@
   const audio = new Audio(source.href);
   audio.loop = true;
   audio.preload = 'none';
-  audio.volume = 0.8;
+  audio.volume = 1;
   const key = 'wedding-review-music-muted';
   let muted = false;
   try { muted = localStorage.getItem(key) === 'true'; } catch {}
@@ -24,7 +24,7 @@
     button.title = label;
   }
   async function start() {
-    if (muted || pending || document.hidden || button.disabled) return;
+    if (document.body.dataset.invitationOpen === 'false' || muted || pending || document.hidden || button.disabled) return;
     pending = true;
     try {
       await audio.play();

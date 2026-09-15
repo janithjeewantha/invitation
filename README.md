@@ -1,6 +1,6 @@
 # Sasindu & Piyumi — invitation review
 
-Open `index.html` to browse all 10 invitation designs and 25 animation studies. Every preview has navigation back to the review home and between collections. This is a standalone static site; no installation or build is needed.
+Open `index.html` to browse all 11 invitation designs and 25 animation studies. Every preview has navigation back to the review home and between collections. This is a standalone static site; no installation or build is needed.
 
 ## Free hosting with GitHub Pages
 
@@ -28,6 +28,15 @@ Original generated PNGs, prompts and downloaded vendor references are intentiona
 
 ## Background music
 
-All 10 complete invitation samples share `music/leberch-love-song-590429.mp3`. They attempt looping playback at 18% volume, with a floating button using each invitation's colours. Browsers that block audible autoplay require a click, tap or keypress; the Play music button also starts playback. A mute choice is remembered on this browser when local storage is available. Playback pauses while the page is hidden. The collection indexes and animation studies do not play music. Device volume settings still affect loudness.
+All 11 complete invitation samples share `music/leberch-love-song-590429.mp3`. They attempt looping playback at 100% volume, with a floating button using each invitation's colours. Browsers that block audible autoplay require a click, tap or keypress; the Play music button also starts playback. A mute choice is remembered on this browser when local storage is available. Playback pauses while the page is hidden. The collection indexes and animation studies do not play music. Device volume settings still affect loudness.
 
 Upload the `music` folder along with the updated design pages and other bundle files. The ZIP is also updated to include the music.
+
+
+## Ivory reverie (concept 02)
+
+The new second concept keeps Ivory promise at 01 and shifts the remaining display numbers to 03–11. Existing URLs are preserved. It adds a click-to-open arched invitation, the original Above the mist artwork with a 14-second camera motion, refined portrait and venue frames, and scroll reveals. Music on the combined version waits for the invitation to open and respects the existing mute preference. Reduced-motion preferences disable the reveals and camera animation. The hillside artwork is an imagined setting, not a view of The Halcyon Banquet.
+
+`invitation-concepts/add_reverie.py` maintains this additional concept and the collection ordering; the main concept builder calls it automatically. No ZIP is regenerated.
+
+Concept 02 refinements: generated ivory curtain background based on the supplied curtain reference (textiles only); reduced-motion-aware arch glow and repeating landscape; centred timeline; photo ribbon with mouse drag, touch swipe and enlargement on desktop/mobile; RSVP UI preview only with no submission endpoint or storage.

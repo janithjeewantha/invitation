@@ -7,8 +7,14 @@ DTSTAMP:20260913T100000Z
 DTSTART:20261021T030000Z
 DTEND:20261021T103000Z
 SUMMARY:Sasindu & Piyumi wedding
-LOCATION:Dickwella Resort & Spa\, Dickwella
+LOCATION;ALTREP="https://www.google.com/maps/search/?api=1&query=The%20Hal
+ cyon%20Banquet%2C%20Matara%2C%20Sri%20Lanka":The Halcyon Banquet\, Matara
 DESCRIPTION:Poruwa ceremony at 9.00 am Sri Lanka time. Regrets only\nby 5 
- October 2026. Sasindu: 071 772 6044. Piyumi: 076 704 7435.
+ October 2026. Sasindu: 071 772 6044. Piyumi: 076 704 7435.\n\nGoogle Maps:
+  https://www.google.com/maps/search/?api=1&query=The%20Halcyon%20Banquet%2
+ C%20Matara%2C%20Sri%20Lanka\nApple Maps: https://maps.apple.com/?q=The%20H
+ alcyon%20Banquet%2C%20Matara%2C%20Sri%20Lanka
+URL:https://www.google.com/maps/search/?api=1&query=The%20Halcyon%20Banque
+ t%2C%20Matara%2C%20Sri%20Lanka
 END:VEVENT
 END:VCALENDAR
