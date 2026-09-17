@@ -61,3 +61,73 @@
 .reverie-summary .summary-details{margin-top:18px;padding-top:16px}
 .reverie-summary .summary-contacts{margin:14px auto;padding:10px 0}
 .reverie-summary .summary-back{margin-top:12px}
+
+/* Quiet portrait watermark: text stays above the photo and its ivory wash. */
+.theme-reverie .venue{position:relative;isolation:isolate;overflow:hidden;background:#f6f2e9;color:#55452d}
+.theme-reverie .venue>.venue-watermark{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:center 0%;opacity:.5;z-index:-2;pointer-events:none}
+.theme-reverie .venue:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#f6f2e955,#f6f2e970 48%,#f6f2e9b8);z-index:-1;pointer-events:none}
+.theme-reverie .venue:after{content:"";position:absolute;inset:9px;border:1px solid #ba9a5f;border-radius:inherit;box-shadow:inset 0 0 14px #d6b87960,0 0 9px #d6b87935;opacity:.25;pointer-events:none;animation:venue-glimmer 6s ease-in-out infinite}
+@keyframes venue-glimmer{0%,100%{opacity:.2}50%{opacity:.65}}
+.theme-reverie .reverie-quote p{font-size:clamp(26px,3.2vw,40px);line-height:1.3;max-width:25ch}
+.theme-reverie .reverie-quote>span{width:62px;height:1px;background:linear-gradient(90deg,transparent,#b69962,transparent);transform-origin:center}
+.theme-reverie .reverie-quote:has(p.is-visible)>span{animation:quote-flourish 2.4s ease-out both}
+@keyframes quote-flourish{from{opacity:0;transform:scaleX(.15)}to{opacity:1;transform:scaleX(1)}}
+.motion-paused .venue:after{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.theme-reverie .venue:after,.theme-reverie .reverie-quote>span{animation:none!important}.theme-reverie .venue:after{opacity:.35}}
+
+.theme-reverie .rsvp-heading .rsvp-deadline{margin-top:22px;font-size:16px;line-height:1.6;letter-spacing:normal;text-transform:none;}
+.theme-reverie .rsvp-deadline strong{font-weight:700;color:#66502e;}
+
+.theme-reverie .guest-note.welcome-note{display:block;text-align:center;border-top:0;margin-top:40px;padding:12px 8px 0}
+.theme-reverie .welcome-note p{max-width:38ch;margin:0 auto;font:italic clamp(25px,3vw,34px)/1.5 var(--serif);color:#665437;animation:welcome-glow 5s ease-in-out infinite}
+@keyframes welcome-glow{0%,100%{text-shadow:0 0 5px #d6bd8720}50%{text-shadow:0 0 12px #cdb17c85,0 0 24px #dfcda34d}}
+.motion-paused .welcome-note p{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.theme-reverie .welcome-note p{animation:none;text-shadow:none}}
+
+/* Optional motion refinement — restore point saved before this block. */
+.theme-reverie .gate-paper{transition:transform 1s cubic-bezier(.22,.61,.36,1),opacity .75s ease}
+.theme-reverie.invitation-open .gate-paper{transform:translateY(-18px) scale(1.025);opacity:0}
+.theme-reverie .gate-open{transition:color .25s,border-color .25s,transform .25s}
+.theme-reverie .gate-open:hover{color:#94733c;border-color:#b79759;transform:translateY(-2px)}
+.theme-reverie .gate-open:active{transform:translateY(0)}
+.theme-reverie .countdown>div{transition:transform .3s ease}
+.theme-reverie .story-photo{transition:transform .65s cubic-bezier(.22,.61,.36,1),box-shadow .65s ease}
+.theme-reverie .summary-quick-links a{transition:background .25s,border-color .25s,transform .25s,opacity .25s}
+.theme-reverie .summary-quick-links a:active{transform:scale(.94)}
+.theme-reverie .attendance-choice>span{transition:background .25s,border-color .25s,box-shadow .25s}
+.theme-reverie .attendance-choice input:checked+span{box-shadow:0 3px 12px #8c744b15}
+.theme-reverie .guest-stepper button{transition:background .2s,transform .2s}
+.theme-reverie .guest-stepper button:active:not(:disabled){transform:scale(.94)}
+.theme-reverie .timeline li.reverie-reveal{transition-duration:.85s}
+.theme-reverie .timeline li:nth-child(2){transition-delay:.08s}
+.theme-reverie .timeline li:nth-child(3){transition-delay:.16s}
+.theme-reverie .lightbox[open]{animation:reverie-photo-open .3s ease-out both}
+.theme-reverie .lightbox[open]::backdrop{animation:reverie-backdrop-open .3s ease-out both}
+@keyframes reverie-photo-open{from{opacity:0;transform:translateY(8px) scale(.975)}to{opacity:1;transform:none}}
+@keyframes reverie-backdrop-open{from{opacity:0}to{opacity:1}}
+@media(hover:hover) and (pointer:fine){
+ .theme-reverie .story-photo:hover{transform:translateY(-5px);box-shadow:0 15px 30px #66543712}
+ .theme-reverie .countdown>div:hover{transform:translateY(-3px)}
+ .theme-reverie .summary-quick-links a:hover{transform:translateY(-2px)}
+}
+@media(prefers-reduced-motion:reduce){
+ .theme-reverie .gate-paper,.theme-reverie .gate-open,.theme-reverie .countdown>div,.theme-reverie .story-photo,.theme-reverie .summary-quick-links a,.theme-reverie .attendance-choice>span,.theme-reverie .guest-stepper button{transition:none!important}
+ .theme-reverie.invitation-open .gate-paper,.theme-reverie .story-photo:hover,.theme-reverie .countdown>div:hover,.theme-reverie .summary-quick-links a:hover{transform:none}
+ .theme-reverie .lightbox[open],.theme-reverie .lightbox[open]::backdrop{animation:none!important}
+}
+
+/* Theme-matched field focus, with a visible keyboard focus indicator. */
+.theme-reverie .reverie-rsvp input:not([type="radio"]),
+.theme-reverie .reverie-rsvp textarea,
+.theme-reverie .reverie-rsvp select{transition:border-color .2s ease,box-shadow .2s ease,background-color .2s ease}
+.theme-reverie .reverie-rsvp input:not([type="radio"]):focus,
+.theme-reverie .reverie-rsvp textarea:focus,
+.theme-reverie .reverie-rsvp select:focus{outline:2px solid #b69c6980;outline-offset:2px;border-color:#9b8051;background:#fffdf7;box-shadow:0 0 0 4px #d9c69c26}
+@media(prefers-reduced-motion:reduce){.theme-reverie .reverie-rsvp input,.theme-reverie .reverie-rsvp textarea,.theme-reverie .reverie-rsvp select{transition:none}}
+
+/* Deep taupe closing palette. */
+.theme-reverie .reverie-summary{background:linear-gradient(155deg,#60554a 0%,#51473e 60%,#493f37 100%);color:#f3ead8;border-top:1px solid #cbb58b45}
+.theme-reverie .reverie-summary .summary-details,.theme-reverie .reverie-summary .summary-contacts,.theme-reverie .reverie-summary .summary-contacts>a+a{border-color:#cbb58b45}
+.theme-reverie .reverie-summary .summary-quick-links a{color:#e2cda4;border-color:#cbb58b65;opacity:1}
+.theme-reverie .reverie-summary .summary-quick-links a:hover,.theme-reverie .reverie-summary .summary-quick-links a:focus-visible{background:#e2cda418;border-color:#e2cda4}
+.theme-reverie .reverie-summary .summary-icon{color:inherit}

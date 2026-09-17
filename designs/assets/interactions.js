@@ -4,9 +4,9 @@ document.querySelector('.replay')?.addEventListener('click', () => {
   void hero.offsetWidth;
   hero.classList.add('animate');
 });
-const wedding = new Date('2026-10-21T08:30:00+05:30').getTime();
+const wedding = new Date('2026-10-21T09:00:00+05:30').getTime();
 function updateCountdown() {
-  const seconds = Math.max(0, Math.floor((wedding - Date.now()) / 1000));
+  const seconds = Math.max(0, Math.ceil((wedding - Date.now()) / 1000));
   const values = {days: Math.floor(seconds / 86400), hours: Math.floor(seconds / 3600) % 24, minutes: Math.floor(seconds / 60) % 60, seconds: seconds % 60};
   for (const [unit, value] of Object.entries(values)) {
     document.querySelector(`[data-unit="${unit}"]`).textContent = String(value).padStart(2, '0');
