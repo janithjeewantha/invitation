@@ -146,3 +146,6 @@
 /* A clear, softly styled wedding announcement beneath the couple's names. */
 .theme-reverie .mist-copy .mist-announcement{font:italic clamp(11px,3.4vw,18px)/1.5 var(--serif);letter-spacing:0;color:#fff2d6;max-width:none;white-space:nowrap;margin:22px auto 0;text-shadow:0 2px 16px #13231e66}
 .theme-reverie .mist-announcement+.mist-rule{margin-top:22px}
+
+/* Rebase the repeating track without a second snap animation. */
+.theme-reverie .reverie-album.is-rebasing{scroll-snap-type:none;scroll-behavior:auto}
