@@ -16,3 +16,9 @@ Before accepting responses from a new domain:
 Local file previews do not support live RSVP submission. Until the Apps Script origin matches the final hosting domain, RSVP will time out on that domain. The Google Sheet and Apps Script remain separate from this static website; no Google credentials belong in the hosting folder.
 
 Search indexing remains disabled via the existing robots meta tag. This is a privacy preference, not access control. This deployment note can be omitted from the upload.
+
+## Custom error page
+
+Keep `404.html` at the publishing root alongside `index.html`. GitHub Pages uses it for missing pages automatically. Other hosts may need their custom error document setting pointed to `/404.html` (serve it with status 404). The page is self-contained so nested missing URLs do not break its styling.
+
+The return link supports GitHub project URLs and a custom domain hosted at `/`. For a custom-domain subfolder, set `customBase` in `404.html` to that folder. For a GitHub user/organisation root site, remove the GitHub project-path branch and use `/`. After deployment, open a nonexistent nested URL and check the return link. A custom error page removes default hosting branding but does not conceal the hosting provider; a custom domain also removes `github.io` from the visible address.
