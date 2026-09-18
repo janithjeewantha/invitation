@@ -28,9 +28,9 @@
    guests.required = accepts;
    document.querySelector('.rsvp-preview-status').textContent = '';
  }));
- function updateStepper(){minus.disabled = !Number.isFinite(guests.valueAsNumber) || guests.valueAsNumber <= 1; form.querySelector('[data-step="1"]').disabled = guests.valueAsNumber >= 20;}
+ function updateStepper(){minus.disabled = !Number.isFinite(guests.valueAsNumber) || guests.valueAsNumber <= 1; form.querySelector('[data-step="1"]').disabled = guests.valueAsNumber >= 10;}
  form.querySelectorAll('[data-step]').forEach(button => button.addEventListener('click', () => {
-   guests.value = String(Math.min(20, Math.max(1, (Number.isFinite(guests.valueAsNumber) ? Math.floor(guests.valueAsNumber) : 1) + Number(button.dataset.step))));
+   guests.value = String(Math.min(10, Math.max(1, (Number.isFinite(guests.valueAsNumber) ? Math.floor(guests.valueAsNumber) : 1) + Number(button.dataset.step))));
    guests.dispatchEvent(new Event('input', {bubbles:true}));
    updateStepper();
  }));
