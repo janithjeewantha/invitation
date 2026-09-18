@@ -56,7 +56,7 @@ function showPhoto(index) {
   const button = albumPhotos[viewing];
   opener = button;
   enlarged.alt = button.querySelector('img').alt || 'Enlarged couple portrait';
-  enlarged.src = button.dataset.full || `../assets/photo-${button.dataset.photo}.jpeg`;
+  enlarged.src = button.dataset.full || `assets/photo-${button.dataset.photo}.jpeg`;
   if (viewerCount) viewerCount.textContent = `${viewing+1} / ${albumPhotos.length}`;
 }
 albumPhotos.forEach((button,index) => button.addEventListener('click', () => {
