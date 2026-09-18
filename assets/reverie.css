@@ -142,3 +142,7 @@
 .reverie-rsvp .rsvp-honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none}
 .reverie-rsvp[aria-busy="true"] [type="submit"]{opacity:.7;cursor:wait}
 .reverie-rsvp [type="submit"]:disabled{cursor:default}
+
+/* A clear, softly styled wedding announcement beneath the couple's names. */
+.theme-reverie .mist-copy .mist-announcement{font:italic clamp(11px,3.4vw,18px)/1.5 var(--serif);letter-spacing:0;color:#fff2d6;max-width:none;white-space:nowrap;margin:22px auto 0;text-shadow:0 2px 16px #13231e66}
+.theme-reverie .mist-announcement+.mist-rule{margin-top:22px}

@@ -12,14 +12,13 @@
   const button = document.createElement('button');
   button.type = 'button';
   button.className = 'wedding-sound';
-  button.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5 5 9H2v6h3l5 4Z"/><g class="sound-waves"><path d="M14 8a6 6 0 0 1 0 8M17 5a10 10 0 0 1 0 14"/></g><path class="sound-slash" d="m15 9 6 6m0-6-6 6"/></svg><span></span>';
+  button.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5 5 9H2v6h3l5 4Z"/><g class="sound-waves"><path d="M14 8a6 6 0 0 1 0 8M17 5a10 10 0 0 1 0 14"/></g><path class="sound-slash" d="m15 9 6 6m0-6-6 6"/></svg>';
   document.body.append(button);
   function render() {
     if (button.disabled) return;
     const playing = !audio.paused && !muted;
     button.dataset.playing = String(playing);
     const label = playing ? 'Mute music' : 'Play music';
-    button.querySelector('span').textContent = label;
     button.setAttribute('aria-label', label);
     button.title = label;
   }
@@ -57,7 +56,6 @@
   audio.addEventListener('error', () => {
     button.disabled = true;
     button.dataset.playing = 'false';
-    button.querySelector('span').textContent = 'Music unavailable';
     button.setAttribute('aria-label', 'Music unavailable');
     button.title = 'The music could not be loaded. Please reload the page to retry.';
   });
