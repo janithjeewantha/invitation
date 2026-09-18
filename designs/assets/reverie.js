@@ -18,10 +18,6 @@
  open.addEventListener('click', reveal);
  document.addEventListener('visibilitychange', () => body.classList.toggle('motion-paused', document.hidden));
  const form = document.querySelector('.reverie-rsvp');
- form.addEventListener('submit', event => {
-   event.preventDefault();
-   document.querySelector('.rsvp-preview-status').textContent = 'Thank you — this is a preview only. Your response has not been sent or saved.';
- });
  const guests = form.querySelector('[name="guests"]');
  const guestGroup = form.querySelector('.guest-count-group');
  const minus = form.querySelector('[data-step="-1"]');
@@ -32,9 +28,10 @@
    guests.required = accepts;
    document.querySelector('.rsvp-preview-status').textContent = '';
  }));
- function updateStepper(){minus.disabled = !Number.isFinite(guests.valueAsNumber) || guests.valueAsNumber <= 1;}
+ function updateStepper(){minus.disabled = !Number.isFinite(guests.valueAsNumber) || guests.valueAsNumber <= 1; form.querySelector('[data-step="1"]').disabled = guests.valueAsNumber >= 20;}
  form.querySelectorAll('[data-step]').forEach(button => button.addEventListener('click', () => {
-   guests.value = String(Math.max(1, (Number.isFinite(guests.valueAsNumber) ? Math.floor(guests.valueAsNumber) : 1) + Number(button.dataset.step)));
+   guests.value = String(Math.min(20, Math.max(1, (Number.isFinite(guests.valueAsNumber) ? Math.floor(guests.valueAsNumber) : 1) + Number(button.dataset.step))));
+   guests.dispatchEvent(new Event('input', {bubbles:true}));
    updateStepper();
  }));
  guests.addEventListener('input',updateStepper);
@@ -55,7 +52,7 @@
  controls.innerHTML='<button type="button" aria-label="Previous photo">←</button><p>Little moments, held close <span>Swipe or drag · Tap to enlarge</span></p><button type="button" aria-label="Next photo">→</button>';
  album.after(controls);
  const [previous,next]=controls.querySelectorAll('button');
- let active=1,frame,width=0;
+ let active=Math.max(0,photos.findIndex(photo=>photo.dataset.photo==='3')),frame,width=0;
  function sync(){
    const center=album.scrollLeft+album.clientWidth/2;
    let closest=Infinity;

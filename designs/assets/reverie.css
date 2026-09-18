@@ -131,3 +131,14 @@
 .theme-reverie .reverie-summary .summary-quick-links a{color:#e2cda4;border-color:#cbb58b65;opacity:1}
 .theme-reverie .reverie-summary .summary-quick-links a:hover,.theme-reverie .reverie-summary .summary-quick-links a:focus-visible{background:#e2cda418;border-color:#e2cda4}
 .theme-reverie .reverie-summary .summary-icon{color:inherit}
+
+.theme-reverie .album-viewer{background:#29251f;color:#f4ead7;padding:52px 14px 12px;width:min(94vw,1000px);max-width:94vw;max-height:94svh;box-sizing:border-box;border:1px solid #b69c6960;border-radius:4px}
+.theme-reverie .album-viewer>img{display:block;width:100%;max-width:100%;height:calc(90svh - 125px);object-fit:contain;touch-action:pan-y pinch-zoom}
+.theme-reverie .album-viewer .close-lightbox{position:absolute;top:8px;right:12px;min-height:40px;background:transparent;color:#f4ead7;border:0}
+.viewer-navigation{display:flex;align-items:center;justify-content:center;gap:28px;padding:12px 0 0}
+.viewer-navigation button{width:44px;height:44px;border:1px solid #d3bc8960;border-radius:50%;background:transparent;color:#f4ead7;font-size:22px}
+.viewer-navigation button:hover{background:#d3bc891a}.viewer-navigation span{font-size:14px;min-width:55px;text-align:center}
+
+.reverie-rsvp .rsvp-honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none}
+.reverie-rsvp[aria-busy="true"] [type="submit"]{opacity:.7;cursor:wait}
+.reverie-rsvp [type="submit"]:disabled{cursor:default}

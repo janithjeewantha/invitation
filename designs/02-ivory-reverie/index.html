@@ -15,7 +15,7 @@
     <script defer src="../../music/music.js"></script>
     <link rel="stylesheet" href="../assets/reverie.css">
     <script defer src="../assets/reverie.js"></script>
-</head>
+<script defer src="../assets/rsvp-config.js"></script><script defer src="../assets/rsvp.js"></script></head>
 
 <body class="theme-1 theme-reverie" data-invitation-open="false" style="--paper:#f5f0e5;--ink:#72572e">
     <section class="invitation-gate" aria-label="Open your invitation">
@@ -120,7 +120,7 @@
                         <p>A new beginning, with blessings from our loved ones.</p>
                     </div>
                 </li>
-                <li><time>4.00 pm</time><span class="event-mark" aria-hidden="true">03</span>
+                <li><time>12.30 pm</time><div><h3>Lunch, with love</h3><p>Share a meal, a little laughter and the joy of being together.</p></div></li><li><time>1.30 pm</time><div><h3>Let us dance</h3><p>The dance floor opens — join us for music and happy memories.</p></div></li><li><time>4.00 pm</time><span class="event-mark" aria-hidden="true">03</span>
                     <div>
                         <h3>Until we meet again</h3>
                         <p>Sending you home with love and gratitude.</p>
@@ -136,16 +136,7 @@
                 <h2>Before our forever</h2>
                 <p>A few moments, a thousand feelings.</p>
             </div>
-            <div class="gallery"><button class="gallery-item" type="button" data-photo="2"
-                    aria-label="Enlarge couple photograph 1"><img class="" src="../assets/photo-2.jpeg" width="1066"
-                        height="1600" alt="Couple portrait" loading=lazy decoding="async"><span>01 / A MOMENT OF US <b
-                            aria-hidden="true">+</b></span></button><button class="gallery-item" type="button"
-                    data-photo="1" aria-label="Enlarge couple photograph 2"><img class="" src="../assets/photo-1.jpeg"
-                        width="1066" height="1600" alt="Couple portrait" loading=lazy decoding="async"><span>02 / A
-                        MOMENT OF US <b aria-hidden="true">+</b></span></button><button class="gallery-item"
-                    type="button" data-photo="3" aria-label="Enlarge couple photograph 3"><img class=""
-                        src="../assets/photo-3.jpeg" width="1066" height="1600" alt="Couple portrait" loading=lazy
-                        decoding="async"><span>03 / A MOMENT OF US <b aria-hidden="true">+</b></span></button></div>
+            <div class="gallery"><button class="gallery-item" type="button" data-photo="1" data-full="../assets/album/photo-1-large.webp" aria-label="Enlarge couple photograph 1 of 8"><img src="../assets/album/photo-1-thumb.webp" width="426" height="640" alt="Couple photograph 1" loading="lazy" decoding="async"><span>01 / A MOMENT OF US <b aria-hidden="true">+</b></span></button><button class="gallery-item" type="button" data-photo="6" data-full="../assets/album/photo-6-large.webp" aria-label="Enlarge couple photograph 2 of 8"><img src="../assets/album/photo-6-thumb.webp" width="640" height="426" alt="Couple photograph 2" loading="lazy" decoding="async"><span>02 / A MOMENT OF US <b aria-hidden="true">+</b></span></button><button class="gallery-item" type="button" data-photo="3" data-full="../assets/album/photo-3-large.webp" aria-label="Enlarge couple photograph 3 of 8"><img src="../assets/album/photo-3-thumb.webp" width="426" height="640" alt="Couple photograph 3" loading="lazy" decoding="async"><span>03 / A MOMENT OF US <b aria-hidden="true">+</b></span></button><button class="gallery-item" type="button" data-photo="4" data-full="../assets/album/photo-4-large.webp" aria-label="Enlarge couple photograph 4 of 8"><img src="../assets/album/photo-4-thumb.webp" width="427" height="640" alt="Couple photograph 4" loading="lazy" decoding="async"><span>04 / A MOMENT OF US <b aria-hidden="true">+</b></span></button><button class="gallery-item" type="button" data-photo="5" data-full="../assets/album/photo-5-large.webp" aria-label="Enlarge couple photograph 5 of 8"><img src="../assets/album/photo-5-thumb.webp" width="426" height="640" alt="Couple photograph 5" loading="lazy" decoding="async"><span>05 / A MOMENT OF US <b aria-hidden="true">+</b></span></button><button class="gallery-item" type="button" data-photo="7" data-full="../assets/album/photo-7-large.webp" aria-label="Enlarge couple photograph 6 of 8"><img src="../assets/album/photo-7-thumb.webp" width="426" height="640" alt="Couple photograph 6" loading="lazy" decoding="async"><span>06 / A MOMENT OF US <b aria-hidden="true">+</b></span></button><button class="gallery-item" type="button" data-photo="8" data-full="../assets/album/photo-8-large.webp" aria-label="Enlarge couple photograph 7 of 8"><img src="../assets/album/photo-8-thumb.webp" width="640" height="640" alt="Couple photograph 7" loading="lazy" decoding="async"><span>07 / A MOMENT OF US <b aria-hidden="true">+</b></span></button><button class="gallery-item" type="button" data-photo="9" data-full="../assets/album/photo-9-large.webp" aria-label="Enlarge couple photograph 8 of 8"><img src="../assets/album/photo-9-thumb.webp" width="426" height="640" alt="Couple photograph 8" loading="lazy" decoding="async"><span>08 / A MOMENT OF US <b aria-hidden="true">+</b></span></button></div>
         </section>
         <section class="rsvp-section section" id="rsvp">
             <div class="rsvp-heading">
@@ -154,8 +145,8 @@
                 <p class="rsvp-deadline">
                 <p><strong>Please respond by 5 October 2026.</strong></p>
             </div>
-            <form class="reverie-rsvp">
-                <p class="rsvp-form-note" id="rsvp-preview-note">Form preview — responses are not sent or saved yet.</p>
+            <form class="reverie-rsvp" onsubmit="return false">
+                <p class="rsvp-form-note" id="rsvp-preview-note">RSVP is not connected yet. No responses will be sent.</p>
                 <label for="guest-name">Your name <span>(required)</span></label><input id="guest-name" name="name"
                     autocomplete="name" required maxlength="100" placeholder="Your full name"><label
                     for="guest-contact">Email or phone <span>(optional)</span></label><input id="guest-contact"
@@ -176,7 +167,7 @@
                 </div><label for="guest-message">A little note <span>(optional)</span></label><textarea
                     id="guest-message" name="message" rows="3" maxlength="1000"
                     placeholder="A message for Sasindu &amp; Piyumi"></textarea><button class="button" type="submit"
-                    aria-describedby="rsvp-preview-note">Preview response ↗</button>
+                    aria-describedby="rsvp-preview-note">Check response</button>
                 <p class="rsvp-preview-status" role="status" aria-live="polite"></p>
             </form>
         </section>

@@ -16,14 +16,55 @@ updateCountdown();
 setInterval(updateCountdown, 1000);
 const dialog = document.querySelector('.lightbox');
 let opener;
-document.querySelectorAll('[data-photo]').forEach(button => button.addEventListener('click', () => {
+const albumPhotos = [...document.querySelectorAll('[data-photo]')];
+const navigable = document.body.classList.contains('theme-reverie');
+let viewing = 0, swipeStart = null;
+const enlarged = dialog.querySelector('img');
+let viewerCount, viewerPrevious, viewerNext;
+if (navigable) {
+  dialog.classList.add('album-viewer');
+  const controls = document.createElement('div');
+  controls.className = 'viewer-navigation';
+  controls.innerHTML = '<button type="button" aria-label="Previous enlarged photo">←</button><span role="status" aria-live="polite"></span><button type="button" aria-label="Next enlarged photo">→</button>';
+  dialog.append(controls);
+  [viewerPrevious, viewerNext] = controls.querySelectorAll('button');
+  viewerCount = controls.querySelector('span');
+  viewerPrevious.addEventListener('click', () => showPhoto(viewing - 1));
+  viewerNext.addEventListener('click', () => showPhoto(viewing + 1));
+  dialog.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();showPhoto(viewing + (event.key === 'ArrowRight' ? 1 : -1));
+    }
+  });
+  enlarged.addEventListener('touchstart', event => {
+    swipeStart = event.touches.length === 1 ? {x:event.touches[0].clientX,y:event.touches[0].clientY} : null;
+  }, {passive:true});
+  enlarged.addEventListener('touchmove', event => {if(event.touches.length !== 1) swipeStart = null;}, {passive:true});
+  enlarged.addEventListener('touchcancel', () => {swipeStart = null;});
+  enlarged.addEventListener('touchend', event => {
+    if (!swipeStart) return;
+    const dx = event.changedTouches[0].clientX - swipeStart.x;
+    const dy = event.changedTouches[0].clientY - swipeStart.y;
+    swipeStart = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)*1.5) showPhoto(viewing + (dx < 0 ? 1 : -1));
+  }, {passive:true});
+  enlarged.addEventListener('error', () => {viewerCount.textContent = 'Photo could not load. Try another photo.';});
+  enlarged.addEventListener('load', () => {viewerCount.textContent = `${viewing+1} / ${albumPhotos.length}`;});
+}
+function showPhoto(index) {
+  viewing = (index + albumPhotos.length) % albumPhotos.length;
+  const button = albumPhotos[viewing];
   opener = button;
-  dialog.querySelector('img').src = `../assets/photo-${button.dataset.photo}.jpeg`;
-  dialog.showModal();
+  enlarged.alt = button.querySelector('img').alt || 'Enlarged couple portrait';
+  enlarged.src = button.dataset.full || `../assets/photo-${button.dataset.photo}.jpeg`;
+  if (viewerCount) viewerCount.textContent = `${viewing+1} / ${albumPhotos.length}`;
+}
+albumPhotos.forEach((button,index) => button.addEventListener('click', () => {
+  showPhoto(index);dialog.showModal();
 }));
 document.querySelector('.close-lightbox').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', event => {if(event.target === dialog) dialog.close();});
-dialog.addEventListener('close', () => opener?.focus());
+dialog.addEventListener('close', () => {swipeStart = null;opener?.focus({preventScroll:true});});
 
 // Native scrolling drives the scale of each photo; no carousel dependency.
 const album = document.querySelector('.theme-1:not(.theme-reverie) .gallery');
