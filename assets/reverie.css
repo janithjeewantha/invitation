@@ -149,3 +149,23 @@
 
 /* Rebase the repeating track without a second snap animation. */
 .theme-reverie .reverie-album.is-rebasing{scroll-snap-type:none;scroll-behavior:auto}
+
+/* Champagne lettering, with steady contrast against the moving hillside. */
+.theme-reverie .mist-copy{color:#f5e5c5;text-shadow:0 2px 6px #101c16b3,0 5px 22px #101c1666}
+.theme-reverie .mist-copy h1{color:#f6e2b8;text-shadow:0 2px 5px #101c1680,0 6px 28px #101c1680}
+.theme-reverie .mist-copy h1 em{color:inherit}
+.theme-reverie .mist-copy .eyebrow{color:#f2dfb7}
+.theme-reverie .mist-copy .mist-announcement{color:#f8ebd2;text-shadow:0 2px 6px #101c16b3,0 4px 18px #101c1666}
+.theme-reverie .mist-copy .mist-date{color:#f3dca9}
+.theme-reverie .mist-copy .mist-location{color:#f3dfb5}
+.theme-reverie .mist-copy .mist-scroll{color:#faf0da;border-bottom-color:#e1c38b99}
+.theme-reverie .mist-copy .mist-scroll:hover{color:#fff6e4;border-bottom-color:#fff0cc}
+.theme-reverie .mist-copy .mist-scroll:focus-visible{outline:2px solid #f3dfb5;outline-offset:6px}
+.theme-reverie .mist-rule{background:#dfc18a}
+
+/* Keep the original heading's layout boxes; scale only the calligraphy inside. */
+@font-face{font-family:InvitationScript;src:url('bickham-script-regular.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
+.theme-reverie .gate-paper h2{width:100%}
+.theme-reverie .gate-name{display:block;position:relative;height:.96em}
+.theme-reverie .gate-paper h2 em{position:relative;height:1em}
+.theme-reverie .gate-name>span,.theme-reverie .gate-paper h2 em>span{position:absolute;left:50%;top:50%;font-family:InvitationScript,cursive;font-weight:400;font-style:normal;font-size:1em;line-height:1;letter-spacing:0;white-space:nowrap;transform:translate(-50%,-50%) scale(1.7);transform-origin:center;color:inherit;font-synthesis:none}
