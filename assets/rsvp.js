@@ -2,7 +2,7 @@
   'use strict';
   const form = document.querySelector('.theme-reverie .reverie-rsvp');
   if (!form) return;
-  const MAX_GUESTS = 5;
+  const MAX_GUESTS = 10;
   const STORAGE = 'sp-wedding-rsvp-2026-attempt-v1';
   const button = form.querySelector('[type="submit"]');
   const status = form.querySelector('.rsvp-preview-status');
