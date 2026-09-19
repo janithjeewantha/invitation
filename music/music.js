@@ -8,7 +8,8 @@
   let boostContext;
   async function boostMusic() {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
-    if (!AudioContext) return;
+    // Local file previews cannot reliably route media through Web Audio (CORS).
+    if (!AudioContext || location.protocol === 'file:') return;
     // Create the audio route only during a gesture, once the context can run.
     if (!boostContext && navigator.userActivation?.isActive) {
       const context = new AudioContext();
@@ -16,7 +17,7 @@
         await context.resume();
         if (context.state !== 'running') { await context.close(); return; }
         const gain = context.createGain();
-        gain.gain.value = 1.1;
+        gain.gain.value = 2;
         const source = context.createMediaElementSource(audio);
         source.connect(gain);
         gain.connect(context.destination);
@@ -38,7 +39,7 @@
   document.body.append(button);
   function render() {
     if (button.disabled) return;
-    const playing = !audio.paused && !muted;
+    const playing = !audio.paused && !muted && (!boostContext || boostContext.state === 'running');
     button.dataset.playing = String(playing);
     const label = playing ? 'Mute music' : 'Play music';
     button.setAttribute('aria-label', label);
@@ -48,25 +49,29 @@
     if (document.body.dataset.invitationOpen === 'false' || muted || pending || document.hidden || button.disabled) return;
     pending = true;
     try {
-      await boostMusic();
-      await audio.play();
+      // Start playback during the click itself; awaiting context.resume() first
+      // can lose the browser's user-gesture permission or stall indefinitely.
+      const boosting = boostMusic();
+      const playback = audio.play();
+      boosting.catch(() => {}).finally(render);
+      await playback;
       if (muted || document.hidden) audio.pause();
     } catch { /* A user gesture may be needed before sound is allowed. */ }
     finally { pending = false; render(); }
   }
   function save() { try { localStorage.setItem(key, String(muted)); } catch {} }
   button.addEventListener('click', () => {
-    if (!audio.paused) { muted = true; audio.pause(); }
+    if (!audio.paused && (!boostContext || boostContext.state === 'running')) { muted = true; audio.pause(); }
     else { muted = false; start(); }
     save();
     render();
   });
   // Retry blocked autoplay on real interactions, without overriding a mute choice.
   document.addEventListener('click', event => {
-    if (!button.contains(event.target) && audio.paused) start();
+    if (!button.contains(event.target) && (audio.paused || (boostContext && boostContext.state !== 'running'))) start();
   });
   document.addEventListener('keydown', event => {
-    if (!event.repeat && !button.contains(event.target) && audio.paused) start();
+    if (!event.repeat && !button.contains(event.target) && (audio.paused || (boostContext && boostContext.state !== 'running'))) start();
   });
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) audio.pause();
