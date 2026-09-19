@@ -5,6 +5,28 @@
   audio.loop = true;
   audio.preload = 'none';
   audio.volume = 1;
+  let boostContext;
+  async function boostMusic() {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    // Create the audio route only during a gesture, once the context can run.
+    if (!boostContext && navigator.userActivation?.isActive) {
+      const context = new AudioContext();
+      try {
+        await context.resume();
+        if (context.state !== 'running') { await context.close(); return; }
+        const gain = context.createGain();
+        gain.gain.value = 1.1;
+        const source = context.createMediaElementSource(audio);
+        source.connect(gain);
+        gain.connect(context.destination);
+        boostContext = context;
+      } catch { await context.close().catch(() => {}); }
+    } else if (boostContext?.state === 'suspended') {
+      await boostContext.resume();
+    }
+  }
+
   const key = 'wedding-review-music-muted';
   let muted = false;
   try { muted = localStorage.getItem(key) === 'true'; } catch {}
@@ -26,6 +48,7 @@
     if (document.body.dataset.invitationOpen === 'false' || muted || pending || document.hidden || button.disabled) return;
     pending = true;
     try {
+      await boostMusic();
       await audio.play();
       if (muted || document.hidden) audio.pause();
     } catch { /* A user gesture may be needed before sound is allowed. */ }
