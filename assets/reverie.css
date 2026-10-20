@@ -139,6 +139,8 @@
 .viewer-navigation button{width:44px;height:44px;border:1px solid #d3bc8960;border-radius:50%;background:transparent;color:#f4ead7;font-size:22px}
 .viewer-navigation button:hover{background:#d3bc891a}.viewer-navigation span{font-size:14px;min-width:55px;text-align:center}
 
+.theme-reverie .rsvp-closed{display:block;text-align:center}.rsvp-closed .rsvp-heading p{margin:0 auto}
+.gate-paper .gate-day-link{margin-top:14px;padding:10px;font-size:12px;letter-spacing:.04em;opacity:.8;border-bottom:1px solid transparent}.gate-paper .gate-day-link:hover{opacity:1;border-bottom-color:currentColor}
 .reverie-rsvp .rsvp-honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none}
 .reverie-rsvp[aria-busy="true"] [type="submit"]{opacity:.7;cursor:wait}
 .reverie-rsvp [type="submit"]:disabled{cursor:default}

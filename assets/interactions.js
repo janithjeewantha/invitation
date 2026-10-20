@@ -12,8 +12,10 @@ function updateCountdown() {
     document.querySelector(`[data-unit="${unit}"]`).textContent = String(value).padStart(2, '0');
   }
 }
-updateCountdown();
-setInterval(updateCountdown, 1000);
+if (document.querySelector('.countdown')) {
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+}
 const dialog = document.querySelector('.lightbox');
 let opener;
 const albumPhotos = [...document.querySelectorAll('[data-photo]')];

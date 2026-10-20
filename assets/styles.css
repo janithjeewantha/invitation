@@ -46,3 +46,6 @@
  .theme-1 .floating-album .gallery-item:focus-visible{outline-offset:3px}
  .theme-1 .album-hint{display:block;text-align:center;font-size:13px;letter-spacing:.03em;margin:0 auto;color:var(--ink)}
 }
+
+/* Phase-switched wording (assets/phase.js) must win over any display rule. */
+[hidden]{display:none!important}

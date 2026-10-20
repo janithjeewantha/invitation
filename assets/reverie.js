@@ -17,24 +17,6 @@
  }
  open.addEventListener('click', reveal);
  document.addEventListener('visibilitychange', () => body.classList.toggle('motion-paused', document.hidden));
- const form = document.querySelector('.reverie-rsvp');
- const guests = form.querySelector('[name="guests"]');
- const guestGroup = form.querySelector('.guest-count-group');
- const minus = form.querySelector('[data-step="-1"]');
- form.querySelectorAll('[name="attendance"]').forEach(choice => choice.addEventListener('change', () => {
-   const accepts = form.querySelector('[name="attendance"]:checked')?.value === 'yes';
-   guestGroup.hidden = !accepts;
-   guests.disabled = !accepts;
-   guests.required = accepts;
-   document.querySelector('.rsvp-preview-status').textContent = '';
- }));
- function updateStepper(){minus.disabled = !Number.isFinite(guests.valueAsNumber) || guests.valueAsNumber <= 1; form.querySelector('[data-step="1"]').disabled = guests.valueAsNumber >= 10;}
- form.querySelectorAll('[data-step]').forEach(button => button.addEventListener('click', () => {
-   guests.value = String(Math.min(10, Math.max(1, (Number.isFinite(guests.valueAsNumber) ? Math.floor(guests.valueAsNumber) : 1) + Number(button.dataset.step))));
-   guests.dispatchEvent(new Event('input', {bubbles:true}));
-   updateStepper();
- }));
- guests.addEventListener('input',updateStepper);
  const album = document.querySelector('.gallery');
  const photos = [...album.querySelectorAll('.gallery-item')];
  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
