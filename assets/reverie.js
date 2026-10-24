@@ -17,6 +17,29 @@
  }
  open.addEventListener('click', reveal);
  document.addEventListener('visibilitychange', () => body.classList.toggle('motion-paused', document.hidden));
+ const closedForm=document.querySelector('[data-rsvp-closed]');
+ if(closedForm){
+   const count=closedForm.elements.guests;
+   const group=closedForm.querySelector('.guest-count-group');
+   const minus=closedForm.querySelector('[data-step="-1"]');
+   const plus=closedForm.querySelector('[data-step="1"]');
+   const status=closedForm.querySelector('.rsvp-preview-status');
+   const updateCount=()=>{
+     const value=Number.isFinite(count.valueAsNumber)?count.valueAsNumber:1;
+     count.value=String(Math.min(10,Math.max(1,Math.floor(value))));
+     minus.disabled=Number(count.value)<=1;plus.disabled=Number(count.value)>=10;
+   };
+   closedForm.querySelectorAll('[name="attendance"]').forEach(choice=>choice.addEventListener('change',()=>{
+     const attending=choice.value==='yes'&&choice.checked;
+     group.hidden=!attending;count.disabled=!attending;if(attending)updateCount();
+   }));
+   minus.addEventListener('click',()=>{count.value=String(Number(count.value)-1);updateCount();});
+   plus.addEventListener('click',()=>{count.value=String(Number(count.value)+1);updateCount();});
+   count.addEventListener('input',updateCount);
+   closedForm.querySelector('[data-rsvp-closed-button]').addEventListener('click',()=>{
+     status.textContent='RSVPs are now closed. Thank you for being part of our celebration.';
+   });
+ }
  const album = document.querySelector('.gallery');
  const photos = [...album.querySelectorAll('.gallery-item')];
  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
